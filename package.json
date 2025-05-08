@@ -16,6 +16,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@eslint/eslintrc": "^3.3.1",
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/commit-analyzer": "^13.0.1",
     "@semantic-release/git": "^10.0.1",
@@ -31,6 +32,8 @@
     "minimatch": "^10.0.1"
   },
   "jest": {
-    "roots": ["<rootDir>/test"]
+    "roots": [
+      "<rootDir>/test"
+    ]
   }
 }
