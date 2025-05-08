@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 
 ## [1.0.0] – Initial Release
 
-- Initial release of Temporal Git-Query CLI with:
+- Initial release of Git-When CLI with:
   - Natural-language flags (`--when`, `--who`, `--what`, `--path`)
   - Fuzzy search and glob filtering via `fuse.js` and `minimatch`
   - Named presets for saving and reusing filter sets

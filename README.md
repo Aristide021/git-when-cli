@@ -1,7 +1,7 @@
-# Temporal Git-Query CLI
+# Git-When CLI
 
-[![CI](https://github.com/aristide021/temporal-git-query/actions/workflows/ci.yml/badge.svg)](https://github.com/aristide021/temporal-git-query/actions/workflows/ci.yml) [![npm version](https://img.shields.io/npm/v/temporal-git-query.svg)](https://www.npmjs.com/package/temporal-git-query)
-[![Coverage](https://img.shields.io/codecov/c/github/aristide021/temporal-git-query?logo=codecov)](https://codecov.io/gh/aristide021/temporal-git-query)
+[![CI](https://github.com/aristide021/git-when-cli/actions/workflows/ci.yml/badge.svg)](https://github.com/aristide021/git-when-cli/actions/workflows/ci.yml) [![npm version](https://img.shields.io/npm/v/git-when-cli.svg)](https://www.npmjs.com/package/git-when-cli)
+[![Coverage](https://img.shields.io/codecov/c/github/aristide021/git-when-cli?logo=codecov)](https://codecov.io/gh/aristide021/git-when-cli)
 [Changelog](./CHANGELOG.md) •
 [Presets example](./presets.example.json)
 
@@ -15,8 +15,8 @@ TGQ provides natural-language-style flags, fuzzy search, glob path filters, name
 
 ```bash
 # Clone the repository
-git clone https://github.com/aristide021/temporal-git-query.git
-cd temporal-git-query
+git clone https://github.com/aristide021/git-when-cli.git
+cd git-when-cli
 
 # Install dependencies
 npm install  # or yarn install
@@ -148,7 +148,7 @@ git-when --when="last-week" --format=markdown --batch-size=50
 ## Project Structure
 
 ```
-temporal-git-query/
+git-when-cli/
 ├── bin/git-when           # CLI entrypoint (shebang + dispatcher)
 ├── lib/
 │   ├── index.js           # main command parser

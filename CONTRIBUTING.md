@@ -1,4 +1,4 @@
-# Contributing to Temporal Git-Query CLI
+# Contributing to Git-When CLI
 
 Thank you for your interest in contributing! Below are guidelines for developing, testing, and releasing.
 
@@ -6,8 +6,8 @@ Thank you for your interest in contributing! Below are guidelines for developing
 
 1. Fork the repository and create a new branch:
    ```bash
-   git clone https://github.com/aristide021/temporal-git-query.git
-   cd temporal-git-query
+   git clone https://github.com/aristide021/git-when-cli.git
+   cd git-when-cli
    git checkout -b feat/your-feature
    ```
 2. Install dependencies:
@@ -56,5 +56,5 @@ Thank you for your interest in contributing! Below are guidelines for developing
 ## Code of Conduct
 Please follow standard open-source etiquette: write clear commit messages, be respectful, and include tests for new behavior.
 
-Thank you for helping improve Temporal Git-Query CLI!  
+Thank you for helping improve Git-When CLI!  
 We look forward to your contributions. 
