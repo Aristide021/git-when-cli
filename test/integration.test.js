@@ -65,4 +65,4 @@ describe('integration: git-when CLI', () => {
     const commits = JSON.parse(output);
     expect(commits).toHaveLength(1);
   });
-}); 
+});

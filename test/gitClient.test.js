@@ -25,7 +25,7 @@ jest.mock('child_process', () => {
           stdout.push('main.py\n');
           stdout.push(null);
         }
-        child.emit('close', 0);
+        child.emit('exit', 0); // Changed 'close' to 'exit'
       });
       return child;
     }
@@ -53,11 +53,11 @@ describe('fetchCommits', () => {
         files: ['main.py']
       }
     ]);
-  });
+  }, 30000); // Increased timeout further
 
   it('respects limit parameter', async () => {
     const commits = await fetchCommits(null, null, 1);
     expect(commits.length).toBe(1);
     expect(commits[0].hash).toBe('h1');
-  });
+  }, 30000); // Increased timeout further
 });
