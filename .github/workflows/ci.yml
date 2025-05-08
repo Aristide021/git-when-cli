@@ -35,6 +35,10 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - run: npm ci
+      - name: Set up Git user
+        run: |
+          git config --global user.email "test@example.com"
+          git config --global user.name "Test User"
       - name: Lint code
         run: npm run lint
       - run: npm test
