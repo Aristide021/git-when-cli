@@ -37,5 +37,8 @@
     "roots": [
       "<rootDir>/test"
     ]
+  },
+  "engines": {
+    "node": ">=18.x"
   }
 }
