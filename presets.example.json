@@ -1,0 +1,11 @@
+{
+  "perf-q2": {
+    "when": "2025-02-01..2025-02-28",
+    "who": "Bob",
+    "what": "perf"
+  },
+  "alice-week": {
+    "when": "last-week",
+    "who": "Alice"
+  }
+} 

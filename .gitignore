@@ -1,0 +1,44 @@
+# Node modules
+node_modules/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+*.log
+
+# Runtime data
+pids/
+*.pid
+
+# Coverage directory
+coverage/
+.nyc_output/
+
+# Build output
+dist/
+build/
+
+# Caches
+.npm/
+.yarn/
+
+# Environment files
+.env
+.env.local
+
+# IDEs & editors
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+
+# Bench outputs and cloned repo
+/bench/vscode/
+/bench/output_*.json
+/bench/output_*.ndjson
+/bench/stats_*.txt
+
+# Local user preset config (ignore local presets.json)
+/presets.json 
