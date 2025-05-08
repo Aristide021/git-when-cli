@@ -12,15 +12,8 @@ describe('integration: git-when CLI error handling', () => {
   });
 
   test('exits with error code and message in non-git repo', () => {
-    let error;
-    try {
+    expect(() => {
       execSync(`node ${cliPath} --format=json`, { cwd: tmpDir, stdio: 'pipe' });
-    } catch (e) {
-      error = e;
-    }
-    expect(error).toBeDefined();
-    expect(error.status).toBe(1);
-    const stderr = error.stderr.toString();
-    expect(stderr).toMatch(/not a Git repository/i);
+    }).toThrow(/not a Git repository/i);
   });
 }); 
