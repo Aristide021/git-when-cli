@@ -56,11 +56,16 @@ jobs:
     needs: test
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     permissions:
-      contents: write
-      issues: write
+      contents: write     # for pushing tags/commits
+      issues: write       # for the "fail" plugin
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0   # full history needed for tagging
+      - name: Configure npm for semantic-release
+        run: |
+          echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
       - name: Use Node.js
         uses: actions/setup-node@v3
         with:
@@ -68,7 +73,7 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
       - run: npm ci
       - name: Run semantic-release
-        run: npm run release
         env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN:   ${{ secrets.NPM_TOKEN }}
+        run: npm run release 
