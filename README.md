@@ -11,6 +11,11 @@ TGQ provides natural-language-style flags, fuzzy search, glob path filters, name
 
 ---
 
+## Requirements
+- Node.js >=20.x
+
+---
+
 ## Installation
 
 ```bash
