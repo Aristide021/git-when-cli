@@ -7,7 +7,7 @@
 
 **Human-friendly, temporal & intent-driven wrapper around `git log`.**
 
-TGQ provides natural-language-style flags, fuzzy search, glob path filters, named presets, and structured exports (table, JSON, CSV, Markdown).
+Git-When provides natural-language-style flags, fuzzy search, glob path filters, named presets, and structured exports (table, JSON, CSV, Markdown).
 
 ---
 
@@ -45,12 +45,18 @@ npm install -g .
 • Dates passed to `--when` are interpreted in UTC by default (e.g. `2023-05-07` → `2023-05-07T00:00:00Z`). If your local timezone is behind UTC, a shorter-than-expected time window may appear. Always use ISO (`YYYY-MM-DD..YYYY-MM-DD`) or natural ranges (`today`, `last-week`).
 
 ### Glob Pattern Gotchas
-• Your shell may expand globs before TGQ sees them. Quote patterns (e.g. `--path="src/**/*.js"`) to avoid unintended matches.
+• Your shell may expand globs before Git-When sees them. Quote patterns (e.g. `--path="src/**/*.js"`) to avoid unintended matches.
 
 ### Tips for Large Repositories
 - Use `--limit <n>` to stop after the first _n_ commits.  
 - Push filtering into Git: `--author`, `--grep`, and `--path` reduce data before JS processing.  
 - Combine flags: `git-when --who Alice --limit 50 --format=json` for a quick API export.
+
+### Fuzzy Search Tips
+- **Default threshold**: 0.4 (balanced between strict and lenient)
+- **Stricter matching**: Use `--fuzzy-level=0.1` to `0.3` for more precise results
+- **Lenient matching**: Use `--fuzzy-level=0.6` to `0.8` to catch more variations
+- **Exact matching**: Use Git's native `--author` and `--grep` flags instead of `--who`/`--what`
 
 ### Exit Codes
 - **0**: Successful execution (even if no commits match).  
@@ -62,11 +68,17 @@ npm install -g .
   "perf-q2": {
     "when": "2025-02-01..2025-02-28",
     "who": "Bob",
-    "what": "perf"
+    "what": "perf",
+    "fuzzyThreshold": 0.3
   },
   "alice-week": {
     "when": "last-week",
     "who": "Alice"
+  },
+  "strict-search": {
+    "who": "john",
+    "fuzzyThreshold": 0.1,
+    "format": "json"
   }
 }
 ```
@@ -89,17 +101,18 @@ git-when [preset] [options]
 
 - **Preset**: If the first argument matches a saved preset name, its filters load automatically.
 - **Options**:
-  - `-w`, `--when <range>`     Date range (e.g. `2023-01..2023-03`, `last-week`, `today`)
-  - `-a`, `--who <author>`     Fuzzy author name
-  - `-k`, `--what <keyword>`   Fuzzy commit message keyword
-  - `-p`, `--path <glob>`      Glob file path (e.g. `src/**/*.js`, `*.md`)
-  - `-f`, `--format <type>`    Output format: `table` (default), `json`, `csv`, `md`
-  - `-s`, `--save <name>`      Save current filters as preset `<name>`
-  - `-n`, `--limit <number>`   Limit the number of commits fetched
-  - `--list-presets`           List saved preset names
-  - `--delete-preset <name>`   Remove a saved preset
-  - `--help`                   Show this help
-  - `--version`                Show version
+  - `-w`, `--when <range>`        Date range (e.g. `2023-01..2023-03`, `last-week`, `today`)
+  - `-a`, `--who <author>`        Fuzzy author name
+  - `-k`, `--what <keyword>`      Fuzzy commit message keyword
+  - `-p`, `--path <glob>`         Glob file path (e.g. `src/**/*.js`, `*.md`)
+  - `-f`, `--format <type>`       Output format: `table` (default), `json`, `csv`, `md`
+  - `--fuzzy-level <0.0-1.0>`     Fuzzy search threshold (default: 0.4, lower = more strict)
+  - `-s`, `--save <name>`         Save current filters as preset `<name>`
+  - `-n`, `--limit <number>`      Limit the number of commits fetched
+  - `--list-presets`              List saved preset names
+  - `--delete-preset <name>`      Remove a saved preset
+  - `--help`                      Show this help
+  - `--version`                   Show version
 
 ---
 
@@ -128,7 +141,12 @@ git-when --what="fix" -w="today" --format=json > fixes-today.json
 # 5. Manage presets
 git-when --list-presets
 git-when --delete-preset weekly-bob
-# 6. Batch Markdown output
+
+# 6. Fine-tune fuzzy search sensitivity
+git-when --who="john" --fuzzy-level=0.2  # Stricter matching
+git-when --who="john" --fuzzy-level=0.8  # More lenient matching
+
+# 7. Batch Markdown output
 git-when --when="last-week" --format=markdown --batch-size=50
 ```
 
@@ -137,9 +155,9 @@ git-when --when="last-week" --format=markdown --batch-size=50
 ## Features
 
 - **Natural flags** (`--when`, `--who`, `--what`, `--path`)
-- **Fuzzy search** on authors and commit messages via [`fuse.js`](https://github.com/krisk/Fuse)
+- **Configurable fuzzy search** on authors and commit messages via [`fuse.js`](https://github.com/krisk/Fuse) with adjustable threshold
 - **Glob file filtering** via [`minimatch`](https://github.com/isaacs/minimatch)
-- **Named presets** for saving and reusing common filters
+- **Named presets** for saving and reusing common filters with validation
 - **Structured output**: ASCII table, JSON, CSV, or Markdown
 - **Cross-platform**: Node.js CLI (macOS, Linux, Windows)
 

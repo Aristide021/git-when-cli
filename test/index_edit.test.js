@@ -8,7 +8,7 @@ describe('Preset save/edit flows', () => {
   const cli = path.join(__dirname, '..', 'bin', 'git-when');
 
   beforeEach(() => {
-    tmpHome = fs.mkdtempSync(path.join(os.tmpdir(), 'tgq-home-'));
+    tmpHome = fs.mkdtempSync(path.join(os.tmpdir(), 'git-when-home-'));
   });
 
   test('save collision without overwrite errors out', () => {

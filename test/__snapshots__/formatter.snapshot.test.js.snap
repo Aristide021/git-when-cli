@@ -1,0 +1,78 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Formatter Snapshot Tests formatCSV handles special characters and quotes 1`] = `
+"hash,author,date,message
+"x1y2z3","User ""Test""","2024-01-15T10:30:00Z","Fix ""critical"" bug, add support for CSV,TSV formats""
+`;
+
+exports[`Formatter Snapshot Tests formatCSV produces consistent CSV output 1`] = `
+"hash,author,date,message
+"a1b2c3d","John Doe","2024-01-15T10:30:00Z","Add new feature"
+"e4f5g6h","Jane Smith","2024-01-14T14:20:00Z","Fix bug in authentication system"
+"i7j8k9l","Bob Johnson","2024-01-13T09:15:00Z","Update documentation with examples""
+`;
+
+exports[`Formatter Snapshot Tests formatJSON produces consistent JSON output 1`] = `
+"[
+  {
+    "hash": "a1b2c3d",
+    "author": "John Doe",
+    "date": "2024-01-15T10:30:00Z",
+    "message": "Add new feature",
+    "files": [
+      "src/feature.js",
+      "test/feature.test.js"
+    ]
+  },
+  {
+    "hash": "e4f5g6h",
+    "author": "Jane Smith",
+    "date": "2024-01-14T14:20:00Z",
+    "message": "Fix bug in authentication system",
+    "files": [
+      "src/auth.js"
+    ]
+  },
+  {
+    "hash": "i7j8k9l",
+    "author": "Bob Johnson",
+    "date": "2024-01-13T09:15:00Z",
+    "message": "Update documentation with examples",
+    "files": [
+      "README.md",
+      "docs/api.md"
+    ]
+  }
+]"
+`;
+
+exports[`Formatter Snapshot Tests formatMarkdown handles pipe characters in content 1`] = `
+"| Hash | Author | Date | Message |
+| --- | --- | --- | --- |
+| p1q2r3 | Pipeline User | 2024-01-15T10:30:00Z | Add pipeline | support for data processing |"
+`;
+
+exports[`Formatter Snapshot Tests formatMarkdown produces consistent Markdown output 1`] = `
+"| Hash | Author | Date | Message |
+| --- | --- | --- | --- |
+| a1b2c3d | John Doe | 2024-01-15T10:30:00Z | Add new feature |
+| e4f5g6h | Jane Smith | 2024-01-14T14:20:00Z | Fix bug in authentication system |
+| i7j8k9l | Bob Johnson | 2024-01-13T09:15:00Z | Update documentation with examples |"
+`;
+
+exports[`Formatter Snapshot Tests formatTable handles empty commits array 1`] = `
+"+------+--------+------+---------+
+| Hash | Author | Date | Message |
++------+--------+------+---------+
++------+--------+------+---------+"
+`;
+
+exports[`Formatter Snapshot Tests formatTable produces consistent table output 1`] = `
+"+---------+-------------+----------------------+------------------------------------+
+| Hash    | Author      | Date                 | Message                            |
++---------+-------------+----------------------+------------------------------------+
+| a1b2c3d | John Doe    | 2024-01-15T10:30:00Z | Add new feature                    |
+| e4f5g6h | Jane Smith  | 2024-01-14T14:20:00Z | Fix bug in authentication system   |
+| i7j8k9l | Bob Johnson | 2024-01-13T09:15:00Z | Update documentation with examples |
++---------+-------------+----------------------+------------------------------------+"
+`;
